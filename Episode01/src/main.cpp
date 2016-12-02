@@ -37,6 +37,8 @@ int main(int argc, char* argv[]) {
 		screen.drawLine(x1, y1, x2, y2);
 	}
 
+	screen.present();
+
 	// While loop used to keep track of if user has clicked x to quit
 	while (true) {
 		// Check for messages/events
