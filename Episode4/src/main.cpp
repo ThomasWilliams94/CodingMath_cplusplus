@@ -28,19 +28,20 @@ int main(int argc, char* argv[]) {
 
 	double centerY = screen.SCREEN_HEIGHT * 0.5;
 	double centerX = screen.SCREEN_WIDTH * 0.5;
-	double radius = 200;
-	double speed = 0.05;
+	double xRadius = 400;
+	double yRadius = 200;
+	double speed = 0.07;
 	double angle = 0.0;
 	double x, y = 0.0;
-	double width = 5.0;
+	double width = 25.0;
 
 	// While loop used to keep track of if user has clicked x to quit
 	while (true) {
 
-		//screen.clear();
+		screen.clear();
 
-		x = centerX + cos(angle) * radius;
-		y = centerY + sin(angle) * radius;
+		x = centerX + cos(angle) * xRadius;
+		y = centerY + sin(angle) * yRadius;
 
 		screen.drawRect(x - width/2, y - width/2, width, width);
 
