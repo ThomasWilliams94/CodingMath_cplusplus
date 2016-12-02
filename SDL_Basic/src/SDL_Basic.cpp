@@ -22,16 +22,35 @@ int main(int argc, char* argv[]) {
 		cout << "Error initialising SDL." << endl;
 	}
 
+	screen.clear();
+
+	int rectWidth = 500;
+	int rectHeight = 200;
+
+	screen.drawRect((screen.SCREEN_WIDTH - rectWidth) / 2,
+			(screen.SCREEN_HEIGHT - rectHeight) / 2, rectWidth, rectHeight);
+
+	SDL_Delay(1000);
+
+	screen.clear();
+
+	screen.drawLine(0, 0, screen.SCREEN_WIDTH, screen.SCREEN_HEIGHT);
+
+	SDL_Delay(1000);
+
+	screen.clear();
+
+	screen.drawRect((screen.SCREEN_WIDTH - rectWidth) / 2,
+				(screen.SCREEN_HEIGHT - rectHeight) / 2, rectWidth, rectHeight);
+	screen.drawLine(0, 0, screen.SCREEN_WIDTH, screen.SCREEN_HEIGHT);
+
+	// While loop used to keep track of if user has clicked x to quit
 	while (true) {
-		// Game loop here
-
-		// Draw the screen
-		screen.update();
-
 		// Check for messages/events
 		if (!screen.processEvents()) {
 			break;
 		}
+
 	}
 
 	screen.close();
