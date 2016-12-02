@@ -30,11 +30,15 @@ int main(int argc, char* argv[]) {
 	screen.drawRect((screen.SCREEN_WIDTH - rectWidth) / 2,
 			(screen.SCREEN_HEIGHT - rectHeight) / 2, rectWidth, rectHeight);
 
+	screen.present();
+
 	SDL_Delay(1000);
 
 	screen.clear();
 
 	screen.drawLine(0, 0, screen.SCREEN_WIDTH, screen.SCREEN_HEIGHT);
+
+	screen.present();
 
 	SDL_Delay(1000);
 
@@ -43,6 +47,8 @@ int main(int argc, char* argv[]) {
 	screen.drawRect((screen.SCREEN_WIDTH - rectWidth) / 2,
 				(screen.SCREEN_HEIGHT - rectHeight) / 2, rectWidth, rectHeight);
 	screen.drawLine(0, 0, screen.SCREEN_WIDTH, screen.SCREEN_HEIGHT);
+
+	screen.present();
 
 	// While loop used to keep track of if user has clicked x to quit
 	while (true) {

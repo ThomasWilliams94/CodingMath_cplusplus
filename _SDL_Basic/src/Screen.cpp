@@ -77,6 +77,10 @@ void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
 	m_buffer1[(y * SCREEN_WIDTH) + x] = colour;
 }
 
+/*
+ * Call present() when all the rectangles have been drawn to
+ * update the screen
+ */
 void Screen::drawRect(int x, int y, int w, int h) {
 	SDL_Rect rect;
 
@@ -87,14 +91,14 @@ void Screen::drawRect(int x, int y, int w, int h) {
 
 	SDL_SetRenderDrawColor(m_renderer, 125, 0, 255, 0); // rectangle colour
 	SDL_RenderFillRect(m_renderer, &rect);
-	SDL_RenderPresent(m_renderer);
 }
 
+/*
+ * Call present() when all lines have been drawn to update the screen
+ */
 void Screen::drawLine(int x1, int y1, int x2, int y2) {
 	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 0); // line colour
 	SDL_RenderDrawLine(m_renderer, x1, y1, x2, y2);
-	SDL_RenderPresent(m_renderer);
-
 }
 
 void Screen::boxBlur() {
@@ -152,6 +156,10 @@ void Screen::update() {
 			SCREEN_WIDTH * sizeof(Uint32));
 	SDL_RenderClear(m_renderer);
 	SDL_RenderCopy(m_renderer, m_texture, NULL, NULL);
+	SDL_RenderPresent(m_renderer);
+}
+
+void Screen::present() {
 	SDL_RenderPresent(m_renderer);
 }
 

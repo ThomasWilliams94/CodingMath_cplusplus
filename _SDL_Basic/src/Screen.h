@@ -14,8 +14,8 @@ namespace codingmath {
 
 class Screen {
 public:
-	const static int SCREEN_WIDTH = 800;
-	const static int SCREEN_HEIGHT = 600;
+	const static int SCREEN_WIDTH = 1364;
+	const static int SCREEN_HEIGHT = 700;
 
 private:
 	SDL_Window *m_window;
@@ -28,6 +28,7 @@ public:
 	Screen();
 	bool init();
 	void update();
+	void present();
 	void setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue);
 	void drawRect(int x, int y, int w, int h);
 	void drawLine(int x1, int y1, int x2, int y2);
