@@ -28,29 +28,26 @@ int main(int argc, char* argv[]) {
 
 	double centerY = screen.SCREEN_HEIGHT * 0.5;
 	double centerX = screen.SCREEN_WIDTH * 0.5;
-	double xRadius = 400;
-	double yRadius = 200;
-	double xSpeed = 0.1;
-	double ySpeed = 0.131;
-	double xAngle = 0.0;
-	double yAngle = 0.0;
+	double radius = 200;
+	double speed = 0.131;
+	double angle = 0.0;
 	double x, y = 0.0;
 	double width = 10.0;
 
+	int numObjs = 24;
+	double slice = M_PI * 2 / numObjs;
+
+	for (int i = 0; i < numObjs; i++) {
+		angle = i * slice;
+		x = centerX + cos(angle) * radius;
+		y = centerY + sin(angle) * radius;
+		screen.drawRect(x - width / 2, y - width / 2, width, width);
+	}
+
+	screen.present();
+
 	// While loop used to keep track of if user has clicked x to quit
 	while (true) {
-
-		//screen.clear();
-
-		x = centerX + cos(xAngle) * xRadius;
-		y = centerY + sin(yAngle) * yRadius;
-
-		screen.drawRect(x - width/2, y - width/2, width, width);
-
-		screen.present();
-
-		xAngle += xSpeed;
-		yAngle += ySpeed;
 
 		// Check for messages/events
 		if (!screen.processEvents()) {
