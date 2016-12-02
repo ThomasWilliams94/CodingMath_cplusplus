@@ -77,6 +77,26 @@ void Screen::setPixel(int x, int y, Uint8 red, Uint8 green, Uint8 blue) {
 	m_buffer1[(y * SCREEN_WIDTH) + x] = colour;
 }
 
+void Screen::drawRect(int x, int y, int w, int h) {
+	SDL_Rect rect;
+
+	rect.x = x;
+	rect.y = y;
+	rect.w = w;
+	rect.h = h;
+
+	SDL_SetRenderDrawColor(m_renderer, 125, 0, 255, 0); // rectangle colour
+	SDL_RenderFillRect(m_renderer, &rect);
+	SDL_RenderPresent(m_renderer);
+}
+
+void Screen::drawLine(int x1, int y1, int x2, int y2) {
+	SDL_SetRenderDrawColor(m_renderer, 0, 0, 0, 0); // line colour
+	SDL_RenderDrawLine(m_renderer, x1, y1, x2, y2);
+	SDL_RenderPresent(m_renderer);
+
+}
+
 void Screen::boxBlur() {
 	// Swap the buffers, so pixel is in m_buffer2 and we are drawing to m_buffer1
 	Uint32 *temp = m_buffer1;
@@ -102,8 +122,10 @@ void Screen::boxBlur() {
 					int currentX = x + col;
 					int currentY = y + row;
 
-					if(currentX >= 0 && currentX < SCREEN_WIDTH && currentY >= 0 && currentY < SCREEN_HEIGHT) {
-						Uint32 colour = m_buffer2[currentY * SCREEN_WIDTH + currentX];
+					if (currentX >= 0 && currentX < SCREEN_WIDTH
+							&& currentY >= 0 && currentY < SCREEN_HEIGHT) {
+						Uint32 colour = m_buffer2[currentY * SCREEN_WIDTH
+								+ currentX];
 
 						Uint8 red = colour >> 24;
 						Uint8 green = colour >> 16;
@@ -145,6 +167,11 @@ bool Screen::processEvents() {
 	return true;
 }
 
+void Screen::clear() {
+	SDL_SetRenderDrawColor(m_renderer, 255, 255, 255, 0); // white background on clear
+	SDL_RenderClear(m_renderer);
+}
+
 void Screen::close() {
 	delete[] m_buffer1;
 	delete[] m_buffer2;
@@ -154,6 +181,5 @@ void Screen::close() {
 	SDL_Quit();
 
 }
-
 
 } /* namespace codingmath */
